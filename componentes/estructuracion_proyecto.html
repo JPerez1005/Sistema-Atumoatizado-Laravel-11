@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Crea una nueva migración</h5>
+            <input type="text" id="migrationName" placeholder="Nombre de la migración" />
+            <button id="copyButton" class="btn btn-primary">Crear Migracion</button>
+            <p>Justo despues de crear la migracion ya puede ir a crearla dando click derecho en la terminal</p>
+            <h5>Configuraciones:</h5>
+            <!-- ComboBox para seleccionar migraciones -->
+            <label for="migrationsSelect">Selecciona una migración:</label>
+            <select id="migrationsSelect" class="form-select mt-2">
+                <option value="">-- Selecciona --</option> <!-- Opción por defecto -->
+            </select>
+            <!-- Opciones para modificar el archivo -->
+            <label>
+                <input type="checkbox" id="enableVue" /> Habilitar Vue
+            </label><br>
+            <label>
+                <input type="checkbox" id="enableRouter" /> Habilitar Vue Router
+            </label><br>
+            <label>
+                <input type="checkbox" id="enablePlugins" /> Agregar Plugins
+            </label><br>
+            
+            <!-- Botón para descargar el archivo modificado -->
+            <button id="downloadButton" class="btn btn-primary mt-3">Descargar Archivo Modificado</button>
+        </div>
+
+        <div class="col-md-6">
+            <pre id="jsPreview" style="background-color: #f4f4f4; padding: 10px;"></pre>
+        </div>
+    </div>
+</div>
