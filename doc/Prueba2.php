@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Prueba2 extends Model
+class nombre_tabla extends Model
 {
     
   public $timestamps = true;
 
-  protected $fillable = ['nombre'];
+  protected $fillable = [];
 
-  protected $table = 'prueba2';
-
+  protected $table = 'nombre_tabla';
 
   public static function validationRules() {
     return [
-      'nombre'=>'required|min:5|max:500'
     ];
   }
+
 }

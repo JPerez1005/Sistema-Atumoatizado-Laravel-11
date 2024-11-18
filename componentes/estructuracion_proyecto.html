@@ -1,33 +1,180 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
-            <h5>Crea una nueva migración</h5>
-            <input type="text" id="migrationName" placeholder="Nombre de la migración" />
-            <button id="copyButton" class="btn btn-primary">Crear Migracion</button>
-            <p>Justo despues de crear la migracion ya puede ir a crearla dando click derecho en la terminal</p>
-            <h5>Configuraciones:</h5>
-            <!-- ComboBox para seleccionar migraciones -->
-            <label for="migrationsSelect">Selecciona una migración:</label>
-            <select id="migrationsSelect" class="form-select mt-2">
-                <option value="">-- Selecciona --</option> <!-- Opción por defecto -->
-            </select>
-            <!-- Opciones para modificar el archivo -->
-            <label>
-                <input type="checkbox" id="enableVue" /> Habilitar Vue
-            </label><br>
-            <label>
-                <input type="checkbox" id="enableRouter" /> Habilitar Vue Router
-            </label><br>
-            <label>
-                <input type="checkbox" id="enablePlugins" /> Agregar Plugins
-            </label><br>
-            
-            <!-- Botón para descargar el archivo modificado -->
-            <button id="downloadButton" class="btn btn-primary mt-3">Descargar Archivo Modificado</button>
+        <div class="col-md-4">
+            <h2>Cambios en tiempo real</h2>
+            <div class="card card-dark card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-bs-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
+                                Crear
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-profile-tab" data-bs-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">
+                                Seleccionar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-messages-tab" data-bs-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">
+                                Agregar campos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-conexiones-tab" data-bs-toggle="pill" href="#custom-tabs-one-conexiones" role="tab" aria-controls="custom-tabs-one-conexiones" aria-selected="false">
+                                Conexiones
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-settings-tab" data-bs-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">
+                                Archivo Migracion
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-modelo-tab" data-bs-toggle="pill" href="#custom-tabs-one-modelo" role="tab" aria-controls="custom-tabs-one-modelo" aria-selected="false">
+                                Archivo Modelo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade active show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                            <Strong>Crear una tabla </Strong>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <button type="button" id="copyButton" class="btn btn-outline-danger"><strong>Crear</strong></button>
+                                </div>
+                                <!-- /btn-group -->
+                                <input type="text" class="form-control" id="migrationName" placeholder="Nombre de la migración">
+                            </div>
+                            <p>Justo despues de crear la migracion ya puede ir a crearla dando click derecho en la terminal</p>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                            <div class="form-group">
+                                <label>Selecciona una tabla</label>
+                                <select id="migrationsSelect" class="select2 form-select js-example-basic-single" data-dropdown-css-class="select2-danger" style="width: 80%;">
+                                <option selected>Seleccionar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                            <div class="custom-control custom-checkbox">
+                                <!-- Opciones para modificar el archivo -->
+                                <label>
+                                    <input type="checkbox" id="textField" /> Habilitar texto
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" id="intField" /> Habilitar numeros
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" id="enumField" /> Habilitar opciones
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" id="dateField" /> Habilitar Fecha
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" id="booleanField" /> Habilitar booleanos
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" id="foreignField" /> Habilitar foranea
+                                </label><br>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-conexiones" role="tabpanel" aria-labelledby="custom-tabs-one-conexiones-tab">
+                            <h3>Aquí se hacen la conexiones entre tablas</h3>
+                            <div class="field">
+                                <label>Conectar con tablas superiores</label>
+                                <div class="control">
+                                    <select id="conexionSuperior" class="form-control choices-multiple-remove" placeholder="This is a placeholder" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Conectar con tablas inferiores</label>
+                                <div class="control">
+                                    <select id="conexionInferior" class="form-control choices-multiple-remove" placeholder="This is a placeholder 2" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Una Conexion</label>
+                                <div class="control">
+                                    <select id="conexionUno" class="form-control choices-multiple-remove" placeholder="This is a placeholder 2" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Muchas Conexiones</label>
+                                <div class="control">
+                                    <select id="conexionMuchos" class="form-control choices-multiple-remove" placeholder="This is a placeholder 2" multiple>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
+                            <!-- Botón para descargar el archivo modificado -->
+                            <button  class="btn-descargar btn btn-outline-danger mt-3 " data-descargar="migracion"><strong>Descargar Archivo de Migración Modificado</strong></button>
+                            <hr>
+                            <p>Se recomienda descargarlo en la carpeta migrations dentro de la carpeta database</p>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-modelo" role="tabpanel" aria-labelledby="custom-tabs-one-modelo-tab">
+                            <!-- Botón para descargar el archivo modificado -->
+                            <button  class="btn-descargar btn btn-outline-danger mt-3 " data-descargar="modelo"><strong>Descargar Archivo de Modelo Modificado</strong></button>
+                            <hr>
+                            <p>Se recomienda descargarlo en la carpeta migrations dentro de la carpeta database</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Codigos de creación para los cambios</h2>
+            <div class="card card-dark card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-table-tab" data-bs-toggle="pill" href="#custom-tabs-one-table" role="tab" aria-controls="custom-tabs-one-table" aria-selected="true">
+                                Crear tabla
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade active show" id="custom-tabs-one-table" role="tabpanel" aria-labelledby="custom-tabs-one-table-tab">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="col-md-6">
-            <pre id="jsPreview" style="background-color: #f4f4f4; padding: 10px;"></pre>
+        <div class="col-md-8">
+            <div class="card card-dark card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-amigracion-tab" data-bs-toggle="pill" href="#custom-tabs-one-amigracion" role="tab" aria-controls="custom-tabs-one-amigracion" aria-selected="true">
+                                Archivo Migración
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-amodelo-tab" data-bs-toggle="pill" href="#custom-tabs-one-amodelo" role="tab" aria-controls="custom-tabs-one-amodelo" aria-selected="false">
+                                Archivo Modelo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade active show" id="custom-tabs-one-amigracion" role="tabpanel" aria-labelledby="custom-tabs-one-amigracion-tab">
+                            <pre id="jsPreview" style="background-color: #f4f4f4; padding: 10px;"></pre>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-amodelo" role="tabpanel" aria-labelledby="custom-tabs-one-amodelo-tab">
+                            <pre id="modeloPreview" style="background-color: #f4f4f4; padding: 10px;"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

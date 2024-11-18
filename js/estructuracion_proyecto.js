@@ -1,19 +1,24 @@
+import {d} from './main.js';
+import {loadFromLocalStorage} from './localStorageService.js';
+import {previewContent, leer_documento, modificarContenido} from './lecturaService.js';
+
+// Cargar archivos
 export async function cargarArchivo() {
     try {
-        const response = await fetch('./doc/2024_10_22_030242_create_prueba2s_table.php'); // Ajusta la ruta según ubicación real
-        if (!response.ok) throw new Error('Error al cargar el archivo');
-        const data = await response.text();
-        document.getElementById("jsPreview").textContent = data;
+        if (!previewContent['../doc/2024_10_22_030242_create_prueba2s_table.php']) {
+            d.getElementById("jsPreview").textContent = await leer_documento('../doc/2024_10_22_030242_create_prueba2s_table.php', "no", "preview");
+        }
 
-        // Ahora que el contenido está cargado, agrega los listeners
+        if (!previewContent['../doc/prueba2.php']) {
+            d.getElementById("modeloPreview").textContent = await leer_documento('../doc/prueba2.php', "no", "preview");
+        }
+
         agregarListeners();
-
-        // Botón para descargar el archivo
-        document.getElementById("downloadButton").addEventListener("click", descargarArchivo);
         
-        // Actualiza el combo box con migraciones guardadas
-        actualizarComboBox();
         
+        // Llamadas de ejemplo para agregar modificaciones
+        await modificarContenido('../doc/Prueba2.php', 'modeloPreview', 5, null, '', 'linea');
+        await modificarContenido('../doc/Prueba2.php', 'modeloPreview', 6, 2, '', 'lineaYColumna');
     } catch (error) {
         console.error(error.message);
     }
@@ -21,94 +26,256 @@ export async function cargarArchivo() {
 
 // Función para agregar los listeners a los checkboxes y el combo box
 function agregarListeners() {
-    const checkboxes = ['enableVue', 'enableRouter', 'enablePlugins'];
+    const checkboxes = ['textField', 'intField', 'enumField','dateField','booleanField','foreignField'];
     
     checkboxes.forEach(nombre => {
         const checkbox = document.getElementById(nombre);
         
         if (checkbox) {
-            checkbox.addEventListener("change", actualizarArchivo);
+            checkbox.addEventListener("change", datosCheckBox);
         } else {
             console.error(`Checkbox con ID ${nombre} no encontrado`);
         }
     });
-
-    // Listener para el combo box
-    const migrationsSelect = document.getElementById("migrationsSelect");
-    migrationsSelect.addEventListener("change", actualizarArchivo); // Agregar listener al select
 }
 
-// Actualiza el contenido del archivo basado en checkboxes y en el combo box
-async function actualizarArchivo() {
-    // Cargar nuevamente el contenido del archivo
-    const response = await fetch('./doc/2024_10_22_030242_create_prueba2s_table.php'); // Ajusta la ruta según ubicación real
-    const data = await response.text();
-    let contenido = data.split('\n'); // Dividir en líneas
+// Función para manejar los cambios en los checkboxes
+function datosCheckBox(event) {
+    const checkbox = event.target;
+    const checkboxId = checkbox.id;
+    const documentoRuta1 = '../doc/Prueba2.php';
+    const documentoRuta2 = '../doc/2024_10_22_030242_create_prueba2s_table.php';
+    const previewId = 'modeloPreview';
+    const previewId2 = 'jsPreview';
 
-    // Configura las líneas en las que deseas agregar las importaciones
-    const lineasImportacion = {
-        enableVue: 0,       // Línea 1 para Vue
-        enableRouter: 1,    // Línea 2 para Vue Router
-        enablePlugins: 4    // Línea 3 para Plugin
-    };
+    switch (checkboxId) {
+        case 'textField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'nombre',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'nombre'=>'required|min:5|max:500'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->string('nombre');", 'linea', !checkbox.checked);
+            break;
+        case 'intField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'stock',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'stock'=>'required|integer|gt:0'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->integer('cantidad');", 'linea', !checkbox.checked);
+            break;
+        case 'enumField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'regular',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'rol'=>'required|in:admin,regular'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->enum('rol', ['admin', 'regular']);", 'linea', !checkbox.checked);
+            break;
+        case 'dateField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'fecha',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'fecha'=>'required|date'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->date('fecha_nacimiento');", 'linea', !checkbox.checked);
+            break;
+        case 'booleanField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'estado',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'estado'=>'required|boolean'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->boolean('estado');", 'linea', !checkbox.checked);
+            break;
+        case 'foreignField':
+            modificarContenido(documentoRuta1, previewId, 12, 25, "'padre_id',", 'lineaYColumna', !checkbox.checked);
+            modificarContenido(documentoRuta1, previewId, 18, null, "    'padre_id'=>'required|exists:padre,id'", 'linea', !checkbox.checked);
+            modificarContenido(documentoRuta2, previewId2, 15, null, "            $table->foreignId('padre_id')->constrained();", 'linea', !checkbox.checked);
+            break;
+        default:
+            console.error(`No hay acción definida para el checkbox con ID ${checkboxId}`);
+            break;
+    }
+}
 
-    // Importaciones que deseas agregar
-    const imports = {
-        enableVue: "import Vue from 'vue';",
-        enableRouter: "import VueRouter from 'vue-router';",
-        enablePlugins: "import Plugin from 'some-plugin';"
-    };
+// Función para cargar los nombres de la clave "migrations" en el select
+export function cambiarNombre() {
+    // Obtiene el elemento select por su ID
+    const select = document.getElementById('migrationsSelect');
 
-    // Agregar o quitar importaciones según el estado del checkbox
-    Object.keys(imports).forEach(id => {
-        const checkbox = document.getElementById(id);
-        if (!checkbox) {
-            console.error(`Checkbox con ID ${id} no encontrado`);
-            return; // Salir si el checkbox no existe
-        }
+    // Limpia las opciones existentes (excepto la primera opción predeterminada)
+    select.innerHTML = '<option selected>Seleccionar</option>';
 
-        const linea = lineasImportacion[id];
-        const index = contenido.findIndex(line => line.includes(imports[id]));
+    // Carga los datos de la clave "migrations" desde LocalStorage
+    const tablas = loadFromLocalStorage("migrations");
 
-        if (checkbox.checked) {
-            if (index === -1) {
-                // Si no existe, agregar la importación en la línea específica
-                contenido.splice(linea, 0, imports[id]);
-            }
-        } else {
-            if (index !== -1) {
-                // Si está desmarcado y existe, eliminar la importación
-                contenido.splice(index, 1);
-            }
-        }
-    });
-
-    // Obtener el valor seleccionado del combo box
-    const migrationsSelect = document.getElementById("migrationsSelect");
-    const nombreTabla = migrationsSelect.value; // Obtener el nombre de la migración seleccionada
-
-    // Reemplazar 'nombre_tabla' con el nombre de la migración
-    if (nombreTabla) {
-        contenido = contenido.map(line => line.replace(/nombre_tabla/g, nombreTabla));
+    // Si hay datos, agrega cada uno como una opción en el select
+    if (tablas && Array.isArray(tablas)) {
+        tablas.forEach(tabla => {
+            const option = document.createElement('option');
+            option.value = tabla;
+            option.textContent = tabla;
+            select.appendChild(option);
+        });
+    } else {
+        console.log("No se encontraron tablas en LocalStorage para la clave 'migrations'");
     }
 
-    // Actualiza el contenido en el <pre> con las líneas unidas de nuevo en un solo texto
-    document.getElementById("jsPreview").textContent = contenido.join('\n');
+    let palabraAReemplazar = "nombre_tabla";
+
+    select.addEventListener('change', (event) => {
+        const seleccion = event.target.value;
+        console.log("Opción seleccionada:", seleccion);
+
+        // Llama a modificarContenido para reemplazar "palabraAReemplazar" con la selección del usuario
+        modificarContenido('../doc/Prueba2.php', 'modeloPreview', null, null, seleccion, 'reemplazarPalabra', false, palabraAReemplazar);
+        modificarContenido('../doc/2024_10_22_030242_create_prueba2s_table.php', 'jsPreview', null, null, seleccion, 'reemplazarPalabra', false, palabraAReemplazar);
+
+        // Actualiza la palabra a reemplazar con el valor seleccionado actual
+        palabraAReemplazar = seleccion;
+    });
 }
 
-// Descargar el archivo modificado
-function descargarArchivo() {
-    const contenido = document.getElementById("jsPreview").textContent;
-    const blob = new Blob([contenido], { type: 'text/javascript' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'vite.config.js';
-    a.click();
-    URL.revokeObjectURL(url); // Limpia la URL creada
+// Función para llenar restricciones en todas las instancias de Choices
+export function llenarRestricciones(choicesInstances) {
+    const tablas = loadFromLocalStorage("migrations");
+
+    if (tablas && Array.isArray(tablas)) {
+        // Recorrer todas las instancias y agregar opciones a cada una
+        choicesInstances.forEach(choicesInstance => {
+            tablas.forEach(value => {
+                choicesInstance.setChoices(
+                    [{ value: value, label: value, selected: false }],
+                    'value',
+                    'label',
+                    false
+                );
+                // console.log("Opción añadida:", value);
+            });
+        });
+    } else {
+        console.log("No se encontraron valores para cargar en el select.");
+        alert("No aparecerán migraciones si primero no las crea");
+    }
 }
 
-// Función que se ejecuta al hacer clic en el botón
+// Objeto para almacenar el estado de cada relación
+export let estadoRelaciones = {};
+
+// Función para manejar los cambios de selección
+export async function seleccionarRestricciones() {
+    const selectElement = d.getElementById('conexionSuperior');
+    const selectElement2 = d.getElementById('conexionInferior');
+    const selectElement3 = d.getElementById('conexionUno');
+    const selectElement4 = d.getElementById('conexionMuchos');
+
+    // Definimos el estado previo para guardar las selecciones anteriores
+    let estadoPrevio = {};
+
+    // Función que maneja el cambio en cualquier select
+    const handleSelectChange = (numero, selectElement) => {
+        const selectedOptions = Array.from(selectElement.selectedOptions).map(option => option.value);
+
+        selectedOptions.forEach((seleccion) => {
+            // Si la opción seleccionada no estaba en `estadoRelaciones`, la agregamos
+            if (!estadoRelaciones.hasOwnProperty(seleccion)) {
+                estadoRelaciones[seleccion] = numero;
+            } 
+            // Si la opción seleccionada ya existía en `estadoRelaciones` y está en el select actual, actualizamos solo si el número cambió
+            else if (estadoRelaciones[seleccion] !== numero) {
+                estadoRelaciones[seleccion] = numero;
+            }
+        });
+
+        // Combinamos las opciones seleccionadas de ambos selects y eliminamos duplicados
+        const combinedSelectedOptions = [...new Set([...Object.keys(estadoRelaciones)])];
+
+        // Guardamos el estado actual como estado previo
+        estadoPrevio = { ...estadoRelaciones };
+        console.log(estadoRelaciones);
+        
+        // Llamamos a la función con todas las opciones combinadas de ambos selects
+        actualizarContenidoSeleccionado(combinedSelectedOptions);
+    };
+
+    if (selectElement) {
+        selectElement.addEventListener('change', () => handleSelectChange(1, selectElement));
+    }
+
+    if (selectElement2) {
+        selectElement2.addEventListener('change', () => handleSelectChange(2, selectElement2));
+    }
+
+    if (selectElement3) {
+        selectElement3.addEventListener('change', () => handleSelectChange(3, selectElement3));
+    }
+
+    if (selectElement4) {
+        selectElement4.addEventListener('change', () => handleSelectChange(4, selectElement4));
+    }
+
+    if (!selectElement && !selectElement2  && !selectElement3 && !selectElement4) {
+        console.error("Ninguno de los elementos select se encontró.");
+    }
+}
+
+// Actualiza el contenido según las opciones seleccionadas y su tipo de relación
+export function actualizarContenidoSeleccionado(selectedOptions) {
+    if (selectedOptions.length === 0) {
+        modificarContenido('../doc/Prueba2.php', 'modeloPreview', 21, null, "}", 'linea', false);
+    }
+
+    // Obtén todos los checkboxes dentro del contenedor
+    const checkboxes = document.querySelectorAll('.custom-control input[type="checkbox"]');
+    const selectedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+    let adiccion = selectedCheckboxes.length;
+
+    // Limpia las líneas anteriores antes de agregar las nuevas
+    for (let i = selectedOptions.length; i >= -1; i--) {
+        modificarContenido('../doc/Prueba2.php', 'modeloPreview', i + 21 + adiccion, null, '', 'linea', true);
+    }
+
+    // Agrega cada opción con el tipo de relación almacenado
+    selectedOptions.forEach((seleccion, index) => {
+        // Usa el estado almacenado para obtener el número de relación
+        const numeroRelacion = estadoRelaciones[seleccion] || 1;  // Default a 1 si no está definido
+        let contenido = contenidoPersonalizado(numeroRelacion, seleccion);
+
+        let adiccion = selectedCheckboxes.length + index;
+        modificarContenido('../doc/Prueba2.php', 'modeloPreview', 20 + adiccion, null, contenido, 'linea', false);
+
+        if (index === selectedOptions.length - 1) {
+            modificarContenido('../doc/Prueba2.php', 'modeloPreview', 21 + adiccion, null, "}", 'linea', false);
+        }
+    });
+}
+
+// Función para generar el contenido personalizado según el tipo de relación
+function contenidoPersonalizado(numero, seleccion) {
+    const seleccionConMayuscula = seleccion.charAt(0).toUpperCase() + seleccion.slice(1);
+    let contenido;
+
+    switch (numero) {
+        case 1:
+            contenido = 
+    `function ${seleccion}() {
+        return $this->hasMany(${seleccionConMayuscula}::class);
+    }`;
+            break;
+        case 2:
+            contenido = 
+    `function ${seleccion}() {
+        return $this->belongsTo(${seleccionConMayuscula}::class);
+    }`;
+            break;
+        case 3:
+            contenido = 
+    `function ${seleccion}() {
+        return $this->hasOne(${seleccionConMayuscula}::class);
+    }`;
+            break;
+        case 4:
+            contenido = 
+    `function ${seleccion}() {
+        return $this->belongsToMany(${seleccionConMayuscula}::class);
+    }`;
+            break;
+        default:
+            console.error("Número no válido para definir la relación");
+            contenido = "";
+            break;
+    }
+
+    return contenido;
+}
+
 export function crearMigracion() {
     const input = document.getElementById("migrationName");
     const migrationName = input.value.trim(); // Obtener el nombre ingresado
@@ -134,18 +301,4 @@ export function crearMigracion() {
     } else {
         alert('Por favor, ingresa un nombre para la migración.'); // Validación si el input está vacío
     }
-}
-
-// Función para actualizar el combobox con las migraciones del localStorage
-function actualizarComboBox() {
-    const migrationsSelect = document.getElementById("migrationsSelect");
-    migrationsSelect.innerHTML = '<option value="">-- Selecciona --</option>'; // Reinicia las opciones
-    const migracionesGuardadas = JSON.parse(localStorage.getItem("migrations")) || [];
-
-    migracionesGuardadas.forEach(migracion => {
-        const option = document.createElement("option");
-        option.value = migracion; // Establece el valor de la opción
-        option.textContent = migracion; // Establece el texto visible
-        migrationsSelect.appendChild(option); // Añade la opción al select
-    });
 }
