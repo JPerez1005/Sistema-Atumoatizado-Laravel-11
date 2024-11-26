@@ -1,6 +1,6 @@
 import {d} from './main.js';
 import {loadFromLocalStorage} from './localStorageService.js';
-import {previewContent, leer_documento, modificarContenido} from './lecturaService.js';
+import {previewContent, leer_documento, modificarContenido, copiar} from './lecturaService.js';
 
 // Cargar archivos
 export async function cargarArchivo() {
@@ -300,5 +300,40 @@ export function crearMigracion() {
         });
     } else {
         alert('Por favor, ingresa un nombre para la migración.'); // Validación si el input está vacío
+    }
+}
+
+export function copiar_tabla_nombre(){
+    const prefix = d.querySelector(".input-group-prepend .input-group-text").textContent;
+    const inputValue = d.getElementById("nombre-tabla").value.trim();
+    const suffix = d.querySelector(".input-group-append .input-group-text").textContent;
+
+    const textoCopiar = `${prefix} ${inputValue} ${suffix}`;
+
+    copiar(textoCopiar);
+}
+
+export function manejarMigraciones(e) { 
+    // La función ahora acepta el evento `e`
+    if (e.target.matches(".dropdown-item")) {
+        const accion = e.target.dataset.action; // Obtener el valor del atributo data-action
+        let textoCopiar;
+
+        switch (accion) {
+            case "inicializar":
+                textoCopiar = "php artisan migrate";
+                break;
+            case "actualizar":
+                textoCopiar = "php artisan migrate:refresh";
+                break;
+            case "eliminar":
+                textoCopiar = "php artisan migrate:rollback";
+                break;
+            default:
+                console.error("Acción no reconocida");
+                return; // No continuar si no hay acción válida
+        }
+
+        copiar(textoCopiar); // Llama a la función `copiar` para copiar al portapapeles
     }
 }

@@ -178,3 +178,14 @@ export function handleDownloadClick(e) {
         }
     }
 }
+
+export function copiar(texto) {
+    navigator.clipboard.writeText(texto)
+        .then(() => {
+            console.log("Texto copiado al portapapeles:", texto);
+            alert("Texto copiado: " + texto);
+        })
+        .catch(err => {
+            console.error("Error al copiar el texto:", err);
+        });
+}

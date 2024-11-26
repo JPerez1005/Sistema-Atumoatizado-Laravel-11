@@ -1,5 +1,5 @@
 import {actualizarNombreDelProyecto,copiarCodigo} from './instalacion_proyecto.js';
-import { cargarArchivo, crearMigracion, llenarRestricciones, cambiarNombre, seleccionarRestricciones, estadoRelaciones, actualizarContenidoSeleccionado  } from './estructuracion_proyecto.js';
+import { cargarArchivo, crearMigracion, llenarRestricciones, cambiarNombre, seleccionarRestricciones, estadoRelaciones, actualizarContenidoSeleccionado, copiar_tabla_nombre, manejarMigraciones  } from './estructuracion_proyecto.js';
 import {handleDownloadClick} from './lecturaService.js';
 export const d=document;
 
@@ -60,5 +60,9 @@ $(function(){
 
         // Delegación de eventos para botones de descarga
         d.addEventListener("click", handleDownloadClick);
+
+        d.getElementById("btn-copiar").addEventListener("click", copiar_tabla_nombre );
+        d.addEventListener("click", manejarMigraciones);
+
     });
 });

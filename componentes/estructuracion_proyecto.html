@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h2>Cambios en tiempo real</h2>
             <div class="card card-dark card-tabs">
                 <div class="card-header p-0 pt-1">
@@ -137,18 +137,49 @@
                                 Crear tabla
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-migration-tab" data-bs-toggle="pill" href="#custom-tabs-one-migration" role="tab" aria-controls="custom-tabs-one-migration" aria-selected="true">
+                                Configuración migraciones
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-one-tabContent">
                         <div class="tab-pane fade active show" id="custom-tabs-one-table" role="tabpanel" aria-labelledby="custom-tabs-one-table-tab">
-                            
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">php artisan make:model</span>
+                                </div>
+                                <input type="text" class="form-control col-3" placeholder="Nombre" id="nombre-tabla">
+                                <div class="input-group-append">
+                                  <span class="input-group-text">-m</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-block btn-info col-3" id="btn-copiar">Copiar</button>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-migration" role="tabpanel" aria-labelledby="custom-tabs-one-migration-tab">
+                            <h3>Migraciones</h3>
+                            <br>
+                            <p>En estas migraciones se pueden ver como la inicializacion la actualizacion o la eliminacion de alguna de estas, para la modificación del proyecto.</p>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info">Elegir</button>
+                                <button type="button" class="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" data-action="inicializar" style="cursor: pointer;">Inicializar migración</a></li>
+                                    <li><a class="dropdown-item" data-action="actualizar" style="cursor: pointer;">Actualizar migración</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" data-action="eliminar" style="cursor: pointer;">Eliminar última migración</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card card-dark card-tabs">
                 <div class="card-header p-0 pt-1">
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
