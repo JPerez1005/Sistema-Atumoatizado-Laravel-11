@@ -1,0 +1,181 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Inicializar Proyecto
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                        <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Codigo</th>
+                        <th style="width: 40px">Copiar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td>1.</td>
+                        <td><pre id="codigo1">php artisan serve</pre></td>
+                        <td>
+                            <button class="btn btn-dark copiar-btn" data-code="codigo1">
+                                Copiar
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>2.</td>
+                        <td><pre id="codigo2">npm run dev</pre></td>
+                        <td>
+                            <button class="btn btn-dark copiar-btn" data-code="codigo2">
+                                Copiar
+                            </button>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Limpiar caché del proyecto 
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <pre id="codigo3">
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+php artisan optimize
+                    </pre>
+                    <button class="btn btn-dark copiar-btn" data-code="codigo3">
+                        Copiar código
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Posible link para iniciar practicas
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <pre id="codigo4">
+http://127.0.0.1:8000/vue#/vue
+                    </pre>
+                    <button class="btn btn-dark copiar-btn" data-code="codigo4">
+                        Copiar código
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        comandos para crear un usuario por tinker
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                        <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Codigo</th>
+                        <th style="width: 40px">Copiar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td>1.</td>
+                        <td><pre id="codigo5">php artisan tinker</pre></td>
+                        <td>
+                            <button class="btn btn-dark copiar-btn" data-code="codigo5">
+                                Copiar
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td><pre id="codigo6">$user = new App\Models\User()</pre></td>
+                            <td>
+                                <button class="btn btn-dark copiar-btn" data-code="codigo6">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td><pre id="codigo7">$user->password=Hash::make('contrasenia')</pre></td>
+                            <td>
+                                <button class="btn btn-dark copiar-btn" data-code="codigo7">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td><pre id="codigo9">$user->email='usuario@gmail.com'</pre></td>
+                            <td>
+                                <button class="btn btn-dark copiar-btn" data-code="codigo9">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td><pre id="codigo10">$user->name='usuario'</pre></td>
+                            <td>
+                                <button class="btn btn-dark copiar-btn" data-code="codigo10">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6.</td>
+                            <td><pre id="codigo11">$user->save()</pre></td>
+                            <td>
+                                <button class="btn btn-dark copiar-btn" data-code="codigo11">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+<div class="container mt-5">
+    <div class="row">
+
+        <h1>Uso normal del sistema</h1>
+
+        <hr>
+
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/password_db.webp" class="card-img-top" alt="contraseña de la base de datos">
+                <div class="card-body">
+                    <h3>.env</h3>
+                    <p class="card-text">
+                        en el archivo .env por favor no olvidar colocar la contraseña de la base de datos, despues de esto ya puedes empezar a hacer la inicializacion de migraciones en la session estructuracion.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck1">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/registros_view.webp" class="card-img-top" alt="contraseña de la base de datos">
+                <div class="card-body">
+                    <h3>registros.vue</h3>
+                    <p class="card-text">
+                        En la linea 24 tiene que cambiar el nombre de la tabla a la cual desea referenciar
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck4">Hecho</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/nombre_proyecto_multistore.webp" class="card-img-top" alt="contraseña de la base de datos">
+                <div class="card-body">
+                    <h3>useGenericStore.js</h3>
+                    <p class="card-text">
+                        En este archivo por favor recordar cambiar el nombre del proyecto en la linea 10.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck2">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/models.webp" class="card-img-top" alt="contraseña de la base de datos">
+                <div class="card-body">
+                    <h3>Models.php</h3>
+                    <p class="card-text">
+                        Este archivo se encuentra en la carpeta config, es muy importante decirle a este archivo cuales son las tablas que deseo utilizar en el proyecto, modificar desde linea 4 columna 30, se pueden agregar mas tablas según las que desee.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck5">Hecho</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/listas_view.webp" class="card-img-top" alt="contraseña de la base de datos">
+                <div class="card-body">
+                    <h3>listas.vue</h3>
+                    <p class="card-text">
+                        En la linea 23 tiene que cambiar el nombre de la tabla a la cual desea referenciar
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck3">Hecho</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-3">
+
+        </div> -->
+        
+
+    </div>
+    <div class="row">
+        <h1>Uso del sanctum en autenticación de usuarios</h1>
+        <hr>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/hasApiTokens.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>User.php</h3>
+                    <p class="card-text">
+                        en el archivo User.php recordar en la linea 14 agregar o activar el hasApiToken, y se importa y eso sería todo para iniciar a usar sanctum.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck6">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/autorizacion.vue.blade.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>vue.blade.php</h3>
+                    <p class="card-text">
+                        En este archivo ya podríamos empezar a descomentar el codigo desde la linea 9 hasta la linea 24, esto se usa para poder mandar los datos del usuario autenticado de modo fuente
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck9">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/logout.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>vue.blade.php</h3>
+                    <p class="card-text">
+                        después de usar el useGenericStore.js ya tendriamos una idea de como bloquear sitios con la ayuda de la api.php y el modo frontal de la aplicacion, ahora iniciaremos a hacer el logout y poder destruir los tokens y el usuario en session y así poder hacer otra session en cualquier otro momento, desde la linea 15 a la 95 en app.vue puede empezar a descomentar, esto lo que hace es obtener datos y despues salirse de la session, tambien descomente el boton.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck12">Hecho</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/api_autenticacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Api.php</h3>
+                    <p class="card-text">
+                        en las lineas 13 y 14 se recomienda primero hacer practicas con el login y despues con el logout, recordar descomentarlas para poder usarlas
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck7">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/api_autorizacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Api.php</h3>
+                    <p class="card-text">
+                        ya usamos api para el login, ahora lo usaremos para bloquear direcciones y peticiones a aquellos que no están autorizados, descomentar la linea 18 para hacer pruebas con la peticion de listas, si usa pinia es mejor administrar las autorizaciones y peticiones desde useGenericStore.js, que es la que se conecta con los componentes de vista
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck10">Hecho</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/web_autenticacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Web.php</h3>
+                    <p class="card-text">
+                        solo hay que descomentar las lineas 10, 11 y 12, para poder usar sanctum en la parte del front, aunque esta vez se está usando solo el login.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck8">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/bloqueo_pinia.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>useGenericStore.js</h3>
+                    <p class="card-text">
+                        puede iniciar a descomentar desde la linea 23, pero recuerde que empieza a descomentar una funcion llamada fecthApi que es lo que sirve para entrar pero con autorizacion, tiene que comentar o eliminar la otra funcion fecthApi para no tener problemas después, este es solo un ejemplo de como bloquear funciones en pinia con sanctum.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck11">Hecho</label>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

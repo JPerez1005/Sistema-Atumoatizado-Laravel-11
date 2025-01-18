@@ -18,6 +18,12 @@ const routes = [
         path: '/registrar',
         component: registrar
     },
+    // descomentar apenas obtenga seguridad con sanctum
+    // {
+    //     name: 'login',
+    //     path: '/login',
+    //     component: login
+    // },
 ];
 
 const router=createRouter({

@@ -1,7 +1,7 @@
 <?php
 
 $models = [
-    'prueba2' => \App\Models\Prueba2::class,
+    'prueba2' => \App\Models\Modelo::class,
     // Agrega más modelos según sea necesario
 ];
 

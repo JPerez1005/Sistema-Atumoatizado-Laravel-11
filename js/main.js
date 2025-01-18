@@ -78,7 +78,15 @@ function cargarContenidoDesdeHash() {
                 d.addEventListener("click", manejarMigraciones);
             });
             break;
-        default:
+        case "especificacion_proyecto":
+            $("#main-content").load("../componentes/especificacion_proyecto.html");
+            break;
+        case "comandos_proyecto":
+            $("#main-content").load("../componentes/comandos_proyecto.html", function(){
+                copiarCodigo();
+            });
+            break;
+            default:
             // Cargar una página por defecto o mostrar un mensaje de error
             $("#main-content").html("<p>Página no encontrada</p>");
             break;

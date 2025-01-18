@@ -7,15 +7,40 @@ export const useGenericStore = defineStore('generic', {
     data: [],
     isLoading: false,
     modelType: '',
-    url: 'http://pruebasSanctum.test/api/',
+    url: 'http://127.0.0.1:8000/api/',
   }),
   actions: {
+    setToken(newToken) {
+      this.token = newToken;
+    },
     setData(data) {
       this.data = data;
     },
     setModelType(modelType) {
       this.modelType = modelType;
     },
+    // el siguiente fetchData solo sirve para sanctum con tokens, descomentarlo si lo cree necesario
+    // async fetchData() {
+    //   if (!this.token) {
+    //     console.error('No se encontró el token en el estado global.');
+    //     this.setData(null);
+    //     window.location.href = '/vue#/login';
+    //     return;
+    //   }
+
+    //   try {
+    //     console.log('Token enviado:', this.token);
+    //     const response = await axios.get(`${this.url}${this.modelType}/all`, {
+    //       headers: {
+    //         Authorization: `Bearer ${this.token}`,
+    //       },
+    //     });
+    //     this.setData(response.data);
+    //   } catch (error) {
+    //     console.error('Error al cargar los datos:', error.response || error);
+    //   }
+    // },
+    //comentar el siguiene fecthData si va a usar la funcion fecthData con sanctum en tokens
     async fetchData() {
       if (!this.modelType) throw new Error("Model type is not set");
       this.isLoading = true;

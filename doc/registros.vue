@@ -19,7 +19,9 @@ import { useFormModel } from '../jsComponents/conexionModelos.js';
 
 export default {
     setup() {
-    const { form, enviar, cancelar, editMode } = useFormModel('prueba2', {
+    const { form, enviar, cancelar, editMode } 
+    // tabla a la que desea referenciar
+    = useFormModel('nombre_tabla', {
         nombre: '',
         stock: 0,
     });

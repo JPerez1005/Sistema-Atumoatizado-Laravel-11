@@ -17,7 +17,10 @@ export default {
         fetchPagina,
         eliminar,
         search,
-        buscar } = useListModel('prueba2');
+        buscar } 
+        // recordar colocar el nombre 
+        // de su tabla a referenciar=>
+        = useListModel('nombre_tabla');
     return {
       data,
       isLoading,
