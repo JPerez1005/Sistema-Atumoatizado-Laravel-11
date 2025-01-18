@@ -68,10 +68,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="col-md-3">
-
-        </div> -->
         
 
     </div>
@@ -95,58 +91,10 @@
                 <div class="card-body">
                     <h3>vue.blade.php</h3>
                     <p class="card-text">
-                        En este archivo ya podríamos empezar a descomentar el codigo desde la linea 9 hasta la linea 24, esto se usa para poder mandar los datos del usuario autenticado de modo fuente
+                        En este archivo ya podríamos empezar a descomentar el codigo desde la linea 10 hasta la linea 25, esto se usa para poder mandar los datos del usuario autenticado de modo fuente
                     </p>
                     <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btncheck9">Hecho</label>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="img/logout.webp" class="card-img-top" alt="recordar">
-                <div class="card-body">
-                    <h3>vue.blade.php</h3>
-                    <p class="card-text">
-                        después de usar el useGenericStore.js ya tendriamos una idea de como bloquear sitios con la ayuda de la api.php y el modo frontal de la aplicacion, ahora iniciaremos a hacer el logout y poder destruir los tokens y el usuario en session y así poder hacer otra session en cualquier otro momento, desde la linea 15 a la 95 en app.vue puede empezar a descomentar, esto lo que hace es obtener datos y despues salirse de la session, tambien descomente el boton.
-                    </p>
-                    <input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck12">Hecho</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="img/api_autenticacion.webp" class="card-img-top" alt="recordar">
-                <div class="card-body">
-                    <h3>Api.php</h3>
-                    <p class="card-text">
-                        en las lineas 13 y 14 se recomienda primero hacer practicas con el login y despues con el logout, recordar descomentarlas para poder usarlas
-                    </p>
-                    <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck7">Hecho</label>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="img/api_autorizacion.webp" class="card-img-top" alt="recordar">
-                <div class="card-body">
-                    <h3>Api.php</h3>
-                    <p class="card-text">
-                        ya usamos api para el login, ahora lo usaremos para bloquear direcciones y peticiones a aquellos que no están autorizados, descomentar la linea 18 para hacer pruebas con la peticion de listas, si usa pinia es mejor administrar las autorizaciones y peticiones desde useGenericStore.js, que es la que se conecta con los componentes de vista
-                    </p>
-                    <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck10">Hecho</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="img/web_autenticacion.webp" class="card-img-top" alt="recordar">
-                <div class="card-body">
-                    <h3>Web.php</h3>
-                    <p class="card-text">
-                        solo hay que descomentar las lineas 10, 11 y 12, para poder usar sanctum en la parte del front, aunque esta vez se está usando solo el login.
-                    </p>
-                    <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck8">Hecho</label>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
@@ -156,10 +104,71 @@
                     <p class="card-text">
                         puede iniciar a descomentar desde la linea 23, pero recuerde que empieza a descomentar una funcion llamada fecthApi que es lo que sirve para entrar pero con autorizacion, tiene que comentar o eliminar la otra funcion fecthApi para no tener problemas después, este es solo un ejemplo de como bloquear funciones en pinia con sanctum.
                     </p>
+                    <input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck12">Hecho</label>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/api_autenticacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Api.php</h3>
+                    <p class="card-text">
+                        en las lineas 13 y 14 se recomienda primero hacer practicas con el login y despues con el logout, recordar descomentarlas para poder usarlas, no olvidar descomentar la importacion con UserController.php
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck7">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/router.js_login.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Router.js</h3>
+                    <p class="card-text">
+                        descomentamos las lineas del 23 al 27 para poder ver el login del componente login, no olvidar descomentar la importacion, recordar también que primero hay que crear un usuario con tinker se encuentran los comandos de creacion de usuario en la session de comandos
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck10">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/logout.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>vue.blade.php</h3>
+                    <p class="card-text">
+                        después de usar el useGenericStore.js ya tendriamos una idea de como bloquear sitios con la ayuda de la api.php y el modo frontal de la aplicacion, ahora iniciaremos a hacer el logout y poder destruir los tokens y el usuario en session y así poder hacer otra session en cualquier otro momento, desde la linea 15 a la 95 en app.vue puede empezar a descomentar, esto lo que hace es obtener datos y despues salirse de la session, tambien descomente el boton. junto con las lineas 11 y 12.
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck13">Hecho</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/web_autenticacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Web.php</h3>
+                    <p class="card-text">
+                        solo hay que descomentar las lineas 10, 11 y 12, para poder usar sanctum en la parte del front, aunque esta vez se está usando solo el login, no olvidar descomentar la importacion con UserController.php
+                    </p>
+                    <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck8">Hecho</label>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/api_autorizacion.webp" class="card-img-top" alt="recordar">
+                <div class="card-body">
+                    <h3>Api.php</h3>
+                    <p class="card-text">
+                        ya usamos api para el login, ahora lo usaremos para bloquear direcciones y peticiones a aquellos que no están autorizados, descomentar la linea 18 para hacer pruebas con la peticion de listas, si usa pinia es mejor administrar las autorizaciones y peticiones desde useGenericStore.js, que es la que se conecta con los componentes de vista
+                    </p>
                     <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btncheck11">Hecho</label>
                 </div>
             </div>
+            
         </div>
         
     </div>

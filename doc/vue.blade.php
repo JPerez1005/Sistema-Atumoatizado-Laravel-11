@@ -7,6 +7,7 @@
 </head>
 <body>
     <!-- descomentar apenas comience a usar sanctum con tokens -->
+    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
     <!-- @if(Auth::check())
         <script>
             window.appData = {!! json_encode([

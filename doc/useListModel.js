@@ -1,4 +1,4 @@
-import { ref, onMounted, computed, useGenericStore } from './main.js';
+import { ref, onMounted, computed, useGenericStore } from './conexionModelos.js';
 
 export function useListModel(modelType) {
   const store = useGenericStore();

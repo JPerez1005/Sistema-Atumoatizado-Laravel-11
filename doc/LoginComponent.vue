@@ -27,8 +27,8 @@ export default{
     data(){
         return{
             form:{
-                email:'admin@admin.com',
-                password:'12345',
+                email:'',
+                password:'',
             },
             errors:{
                 login:''

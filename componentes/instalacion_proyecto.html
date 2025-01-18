@@ -93,7 +93,7 @@ php artisan install:api
                 <div class="card-body">
                     <pre id="codigo4">
 mkdir app\Http\Controllers\Api
-echo. > app\Http\Controllers\Api\UserController.php
+php artisan make:controller Api/UserController
 cd resources
 mkdir css
 echo. > css\vue.css
@@ -107,6 +107,7 @@ mkdir js\vue\components\auth
 echo. > js\vue\components\listas.vue
 echo. > js\vue\components\registros.vue
 mkdir js\vue\jsComponents
+mkdir js\vue\store
 cd ..
 echo. > resources\views\vue.blade.php
                     </pre>

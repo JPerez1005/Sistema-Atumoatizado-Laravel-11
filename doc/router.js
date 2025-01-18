@@ -1,6 +1,8 @@
 import { createRouter,createWebHashHistory } from "vue-router";
 import listas from "./components/listas.vue";
 import registrar from "./components/registros.vue";
+// descomentar apenas obtenga seguridad con sanctum
+// import login from "./components/auth/LoginComponent.vue";
 
 const routes = [
     {
