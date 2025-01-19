@@ -86,6 +86,16 @@ function cargarContenidoDesdeHash() {
                 copiarCodigo();
             });
             break;
+        case "implementar_politicas":
+            $("#main-content").load("../componentes/implementar_politicas.html", function(){
+                copiarCodigo();
+            });
+            break;
+        case "estructurar_politicas":
+            $("#main-content").load("../componentes/estructurar_politicas.html", function(){
+                copiarCodigo();
+            });
+            break;
             default:
             // Cargar una página por defecto o mostrar un mensaje de error
             $("#main-content").html("<p>Página no encontrada</p>");

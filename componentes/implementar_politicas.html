@@ -1,0 +1,129 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Agregar roles a la tabla de usuarios
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                    <pre id="codigo1">
+php artisan make:migration add_role_to_users_table --table=users
+                    </pre>
+
+                    <button class="btn btn-dark copiar-btn" data-code="codigo1">
+                        Copiar código
+                    </button>
+
+
+                </div>
+                <div class="card-footer">
+                    <p>
+                        Recordar que después de esto se deben de hacer unos cambios en la migracion de la creacion de este archivo, para más información visitar <a href="#estructurar_politicas">estructurar politicas</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Agregar un id de usuario a otras tablas
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                    <pre id="codigo2">
+php artisan make:migration add_user_id_to_nombre_table --table=nombre_table
+                    </pre>
+
+                    <button class="btn btn-dark copiar-btn" data-code="codigo2">
+                        Copiar código
+                    </button>
+
+
+                </div>
+                <div class="card-footer">
+                    <p>
+                        Recordar que después de esto se deben de hacer unos cambios en la migracion de la creacion de este archivo, para más información visitar <a href="#estructurar_politicas">estructurar politicas</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Inicializar tablas
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                    <pre id="codigo3">
+php artisan migrate
+                    </pre>
+
+                    <button class="btn btn-dark copiar-btn" data-code="codigo3">
+                        Copiar código
+                    </button>
+
+
+                </div>
+                <div class="card-footer">
+                    <p>
+                        Recordar que después de esto se deben de hacer unos cambios en la migracion de la creacion de este archivo, para más información visitar <a href="#estructurar_politicas">estructurar politicas</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Contenido de la primera columna -->
+            <div class="card card-dark collapsed-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Implementacion de politicas
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <pre id="codigo4">
+php artisan make:policy Nombre_modeloPolicy --model:Nombre_modelo
+                    </pre>
+                    <button class="btn btn-dark copiar-btn" data-code="codigo4">
+                        Copiar código
+                    </button>
+                </div>
+                <div class="card-footer">
+                    Después de hacer la implementación de politicas, hay que configurar esta misma politica y el controlador.  <a href="#estructurar_politicas">estructurar politicas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>

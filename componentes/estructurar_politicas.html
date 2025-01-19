@@ -1,0 +1,259 @@
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Migración: add_role_to_users_table
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo1">
+<code>
+public function up(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        // 'admin' para administradores
+        $table->string('role')->default('user');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('role');
+    });
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                Simplemente tiene que cambiar las funciones "up" y "down"
+                <button class="btn btn-info copiar-btn" data-code="codigo1">
+                    Copiar código
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Modelo: User
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo2">
+<code>
+public function hasRole(string $role): bool
+{
+    return $this->role === $role;
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                Ahora en el modelo "User" colocar esta funcion
+                <button class="btn btn-info copiar-btn" data-code="codigo2">
+                    Copiar código
+                </button>
+                <br>
+                Después de copiar este codigo ya puede hacer inicializar las migraciones
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Migración: add_user_id_to_nombre_table
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo1">
+<code>
+public function up(): void
+{
+    Schema::table('nombre_table', function (Blueprint $table) {
+        $table->foreignId('user_id')->constrained()
+        ->onDelete('cascade');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('nombre_table', function (Blueprint $table) {
+        $table->dropColumn('user_id');
+    });
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                Simplemente tiene que cambiar las funciones "up" y "down", no funcionará a menos de que también haga el cambio, en el modelo correspondiente al cual le agregó este nuevo campo, es decir tiene que ir al modelo y agregar este campo también.
+                <button class="btn btn-info copiar-btn" data-code="codigo1">
+                    Copiar código
+                </button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Politica
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo4">
+<code>
+public function viewAny(User $user): bool
+{
+    return $user->hasRole('admin');
+    // Solo los administradores pueden ver todos los registros
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-info copiar-btn" data-code="codigo4">
+                    Copiar código
+                </button>
+                Ahora solo faltaría configurar el controlador.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Controlador con politica a multimodelos
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo5">
+<code>
+// Listar todos los registros
+public function all($type)
+{
+    try {
+        $model = $this->getModel($type);
+
+        if (!$model) {
+            throw new \Exception("Modelo no encontrado para el tipo: {$type}");
+        }
+
+        $instance = $model::first(); // Usamos el primer registro del modelo
+
+        if (!$instance) {
+            throw new \Exception("No se encontró ninguna instancia del modelo: {$type}");
+        }
+
+        $allowed = Gate::allows('view', $instance);
+
+        if (!$allowed) {
+            return response()->json(['error' => 'No autorizado'], 403);
+        }
+
+        return response()->json($model::all());
+    } catch (\Exception $e) {
+        // Log del error para depuración
+        \Log::error($e->getMessage());
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-info copiar-btn" data-code="codigo5">
+                    Copiar código
+                </button>
+                Claro este solo sería un ejemplo para aplicar a todos los modelos, para aplicar a un solo modelo es necesario hacer otro tipo de configuracion
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-50">
+        <div class="card card-info collapsed-card">
+            <div class="card-header">
+                <h1 class="card-title">
+                    Configurar Controlador con politica a multimodelos
+                </h1>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <pre id="codigo5">
+<code>
+public function all($type)
+{
+    $model = $this->getModel($type);
+
+    //especificar el modelo al cual se desea
+    //hacer la autorizacion modelo=$type
+    $allowed = Gate::allows('view', $type);
+
+    // Devuelve una respuesta JSON con el estado del Gate
+    if (!$allowed) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    return response()->json($model::all());
+}
+</code>
+                </pre>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-info copiar-btn" data-code="codigo5">
+                    Copiar código
+                </button>
+                Claro este solo sería un ejemplo para aplicar a solo un modelo, para aplicar a muchos modelos es necesario hacer otro tipo de configuracion.
+            </div>
+        </div>
+    </div>
+</div>
